@@ -11,7 +11,9 @@ def main():
     # growth_df = DividendProjectionApp.run()
     growth_df = DividendProjectionApp.local_run()
 
-    ProjectionVisualizer.generate_visualization(growth_df)
+    # ProjectionVisualizer.generate_visualization(growth_df)
+    ProjectionVisualizer.view_single_stock_growth(growth_df, "International Business Machines")
+    ProjectionVisualizer.view_single_stock_growth(growth_df, "Verizon Communications Inc.")
 
 
 if __name__ == "__main__":
