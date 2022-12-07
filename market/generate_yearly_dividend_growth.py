@@ -3,7 +3,7 @@ from typing import Tuple
 import pandas as pd
 from pandas import DataFrame
 
-from constants import YEARS_OF_REINVESTMENT
+from market.constants import YEARS_OF_REINVESTMENT
 
 
 class GeneratedYearlyDividendGrowth:
@@ -18,10 +18,9 @@ class GeneratedYearlyDividendGrowth:
         growth_df["Company Name"] = dividends_df["Company Name"]
         growth_df["Dividends Reinvested Shares"] = dividends_df["Annual Dividend Payout"] / companies_df[
             "Price Per Share"]
-        growth_df["Dividend Payout Delta"] = (
-                                                     growth_df["Dividends Reinvested Shares"] + dividends_df[
-                                                 "Number of Shares"]
-                                             ) * companies_df["Annual Payout"] - dividends_df["Annual Dividend Payout"]
+        growth_df["Dividend Payout Delta"] = (growth_df["Dividends Reinvested Shares"] + dividends_df[
+                                                 "Number of Shares"]) * \
+                                             companies_df["Annual Payout"] - dividends_df["Annual Dividend Payout"]
         growth_df["Total Dividends Collected"] = (growth_df["Dividend Payout Delta"] +
                                                   dividends_df["Annual Dividend Payout"])
 
@@ -29,7 +28,7 @@ class GeneratedYearlyDividendGrowth:
 
     @staticmethod
     def yearly_growth_calculation_refined(dividend_df: DataFrame) -> DataFrame:
-        for year in range(1, YEARS_OF_REINVESTMENT+1):
+        for year in range(1, YEARS_OF_REINVESTMENT + 1):
             for quarter in range(1, 5):
                 if year == 1 and quarter == 1:
                     dividend_df[f"Reinvested Y{year}Q{quarter} Shares"] = (
@@ -63,21 +62,21 @@ class GeneratedYearlyDividendGrowth:
                 return df
             if count == 1:
                 df[f"Reinvested Year {count} Shares"] = (
-                        (df["Annual Dividend Payout"]/df["Price Per Share"]) +
+                        (df["Annual Dividend Payout"] / df["Price Per Share"]) +
                         df["Number of Shares"])
 
                 df[f"Reinvested Year {count} Dividends"] = (
-                    df[f"Reinvested Year {count} Shares"] * df["Annual Payout"])
+                        df[f"Reinvested Year {count} Shares"] * df["Annual Payout"])
 
-                return reinvestment(df, count+1)
+                return reinvestment(df, count + 1)
 
             df[f"Reinvested Year {count} Shares"] = (
-                    df[f"Reinvested Year {count-1} Dividends"]/df["Price Per Share"] +
-                    df[f"Reinvested Year {count-1} Shares"])
+                    df[f"Reinvested Year {count - 1} Dividends"] / df["Price Per Share"] +
+                    df[f"Reinvested Year {count - 1} Shares"])
             df[f"Reinvested Year {count} Dividends"] = (
-                 df[f"Reinvested Year {count} Shares"] * df["Annual Payout"]
+                    df[f"Reinvested Year {count} Shares"] * df["Annual Payout"]
             )
-            return reinvestment(df, count+1)
+            return reinvestment(df, count + 1)
 
         growth_df = reinvestment(dividend_df)
 

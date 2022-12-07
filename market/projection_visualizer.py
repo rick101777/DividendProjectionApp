@@ -2,7 +2,7 @@ from pandas import DataFrame
 
 import plotly.express as px
 
-from constants import YEARS_OF_REINVESTMENT
+from market.constants import YEARS_OF_REINVESTMENT
 
 
 class ProjectionVisualizer:
@@ -29,6 +29,7 @@ class ProjectionVisualizer:
                            title="Share Projections")
         plot.show()
         plot2.show()
+        return plot, plot2
 
     @staticmethod
     def view_single_stock_growth(growth_df: DataFrame, company_name: str):
@@ -46,3 +47,4 @@ class ProjectionVisualizer:
                           title=f"{company_name} Dividend Returns Over Time")
 
         plot.show()
+        return plot

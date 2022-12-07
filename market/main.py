@@ -1,7 +1,7 @@
 import pandas as pd
 
-from dividend_projection_app import DividendProjectionApp
-from projection_visualizer import ProjectionVisualizer
+from market.dividend_projection_app import DividendProjectionApp
+from market.projection_visualizer import ProjectionVisualizer
 
 pd.set_option("display.max_columns", 20)
 pd.set_option("display.max_rows", 50)

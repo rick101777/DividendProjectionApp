@@ -2,10 +2,10 @@ import pandas as pd
 import yfinance as yf
 from pandas import DataFrame
 
-from generate_dividends import GenerateDividends
-from generate_yearly_dividend_growth import GeneratedYearlyDividendGrowth
-from company import Company
-from constants import companies
+from market.generate_dividends import GenerateDividends
+from market.generate_yearly_dividend_growth import GeneratedYearlyDividendGrowth
+from market.company import Company
+from market.constants import companies
 
 
 class DividendProjectionApp:
