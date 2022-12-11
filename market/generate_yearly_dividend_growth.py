@@ -27,7 +27,7 @@ class GeneratedYearlyDividendGrowth:
         return growth_df
 
     @staticmethod
-    def yearly_growth_calculation_refined(dividend_df: DataFrame) -> DataFrame:
+    def yearly_growth_calculation_refined(dividend_df: DataFrame, years_of_reinvestment=None) -> DataFrame:
         for year in range(1, YEARS_OF_REINVESTMENT + 1):
             for quarter in range(1, 5):
                 if year == 1 and quarter == 1:

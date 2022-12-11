@@ -9,6 +9,12 @@ from market.constants import companies
 
 
 class DividendProjectionApp:
+    # TODO:
+    #   Update Dividend Project App to do:
+    #       - Differentiate methods of providing parameters
+    #       - Implement Caching
+    #       -
+
     @staticmethod
     def local_run() -> DataFrame:
         """
